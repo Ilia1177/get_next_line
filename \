@@ -3,43 +3,7 @@ static char *get_characters(char *buff, char *paragraph, int fd);
 
 char *get_next_line(int fd)
 {
-	static char	*paragraph;
-	char		*characters;
-	char		*line;
-	char		*buffer;
-
-	if (BUFFER_SIZE <= 0)
-		return (0);
-	buffer = malloc(BUFFER_SIZE + 1);
-	characters = get_characters(buffer, paragraph, fd); //with a \n or \0 in it
-	free(buffer);
-	if (!characters)
-	{
-		if (!paragraph)
-			return (0);
-		line = paragraph;
-		free(paragraph);
-		paragraph = 0;
-	}
-	else
-	{
-		line = ft_strtrim(characters, '\n');
-		if (*(characters + ft_strnlen(line, '\n')) == '\0')
-		{
-			free(paragraph);
-			paragraph = 0;
-		}
-		else
-			paragraph = ft_strtrim(characters + ft_strnlen(line, '\n'), '\n');
-		free(characters);
-		characters = 0;
-	}
-	return (line);
-
-
-
-
-/*	char			*buff;
+	char			*buff;
 	char			*line;
 	static char		*remain;
 	char			*paragraph;
@@ -54,10 +18,6 @@ char *get_next_line(int fd)
 	free(buff);
 	if (!paragraph && !remain)
 			return (0);
-	
-
-
-
 	if (paragraph)
 	{
 		line = ft_strtrim(paragraph, '\n');
@@ -67,6 +27,7 @@ char *get_next_line(int fd)
 		else
 			remain = 0;
 		free(paragraph);
+		paragraph = remain;
 	}
 	else if (!paragraph && remain)
 	{
@@ -74,37 +35,12 @@ char *get_next_line(int fd)
 		free(remain);
 		remain = 0;
 	}
-	return (line);*/
+	return (line);
 }
 
 static char *get_characters(char *buff, char *paragraph,  int fd)
 {
-
-	int		bytes_read;
-	char	*characters;
-	char	*tmp;
-
-	bytes_read = 1;
-	while (bytes_read)
-	{
-		bytes_read = read(fd, buff, BUFFER_SIZE);
-		buff[bytes_read] = '\0';
-		if (bytes_read <= 0)
-			return (0);
-		if (!paragraph)  // 1ere initialisation of paragraph
-			paragraph = ft_strdup(buff);
-		else // free old paragraph and build new one (JOIN)
-		{
-			tmp = paragraph;
-			paragraph = ft_strjoin(tmp, buff);
-			free(tmp);
-		}
-		if (ft_strnchr(buff, '\n', BUFFER_SIZE)) //
-			break;
-	}
-	return (paragraph);
-
-/*	int			char_read;
+	int			char_read;
 	char		*characters;
 
 	char_read = 1;
@@ -124,6 +60,6 @@ static char *get_characters(char *buff, char *paragraph,  int fd)
 		}
 		if (ft_strnchr(buff, '\n', BUFFER_SIZE))
 			break ;
-	}*/
+	}
 	return (paragraph);
 }

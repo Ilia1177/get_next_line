@@ -6,7 +6,7 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strnchr(const char *s, int c, int n);
 char	*ft_strdup(const char *s);
 int		ft_strnlen(const char *str, int c);
 char	*ft_strtrim(char const *s, char set);

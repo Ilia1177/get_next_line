@@ -10,13 +10,18 @@ int	ft_strnlen(const char *str, int c)
 	return (str - start);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strnchr(const char *s, int c, int n)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	while (i < n)
 	{
-		if ((unsigned char)*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
+		if ((unsigned char)s[i] == (unsigned char)c)
+			return ((char *)(s + i));
+		if (!s[i])
+			return ((char *)(s + i));
+		i++;
 	}
 	if ((unsigned char)c == '\0')
 		return ((char *)s);
@@ -82,11 +87,7 @@ char	*ft_strtrim(char const *s, char set)
 		return (0);
 	len = ft_strnlen(s, set);
 	if (len <= 0)
-	{	
-		dest = (char*)malloc(1 * sizeof (char));
-		dest = '\0';
-		return (dest);
-	}
+		return (0);
 	dest = (char *)malloc((len + 1) * sizeof(char));
 	if (!dest)
 		return (0);

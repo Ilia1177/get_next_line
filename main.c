@@ -6,8 +6,8 @@ int main(void)
 	char *line;
 
 	fd = open("test.txt", O_RDONLY);
-	line = get_next_line(fd);
 //	fd = 0;
+	line = get_next_line(fd);
 	while (line)
 	{
 		write(1, line, ft_strnlen(line, '\n'));
@@ -15,6 +15,7 @@ int main(void)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 }
 
 	
