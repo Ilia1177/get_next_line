@@ -1,21 +1,46 @@
 #include "get_next_line.h"
 
-int main(void)
+int main(int ac, char **av)
 {
-	int fd;
+	int fd1;
+	int fd2;
 	char *line;
 
-	fd = open("test.txt", O_RDONLY);
-//	fd = 0;
-	line = get_next_line(fd);
+	(void)ac;
+	(void)av;
+	fd1 = open("test.txt", O_RDONLY);
+	fd2= open("test2.txt", O_RDONLY);
+
+/*	line = get_next_line(fd1);
+	write(1, line, ft_strnlen(line, 0));
+	free(line);
+	line = get_next_line(fd2);
+	write(1, line, ft_strnlen(line, 0));
+	free(line);
+	line = get_next_line(fd1);
+	write(1, line, ft_strnlen(line, 0));
+	free(line);
+	line = get_next_line(fd2);
+	write(1, line, ft_strnlen(line, 0));
+	free(line);
+	close(fd1);
+	close(fd2);*/
+
+//	while (line)dd
+//	while (line)dd
+//	while (line)dd
+	line = get_next_line(fd1);
 	while (line)
 	{
-		write(1, line, ft_strnlen(line, '\n'));
-		write(1, "\n", 1);
+		write(1, line, ft_strnlen(line, 0));
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd2);
+		write(1, line, ft_strnlen(line, 0));
+		free(line);
+		line = get_next_line(fd1);
 	}
 	free(line);
+	close(fd1);
+	close(fd2);
 }
-
 	

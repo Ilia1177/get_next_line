@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npolack <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 13:43:08 by npolack           #+#    #+#             */
-/*   Updated: 2024/10/22 20:40:34 by npolack          ###   ########.fr       */
+/*   Created: 2024/10/23 11:28:44 by npolack           #+#    #+#             */
+/*   Updated: 2024/10/24 10:41:45 by npolack          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*make_paragraph(char *paragraph, char *current_line);
 static char	*get_characters(char *buffer, char *paragraph, int fd);
+//static void	free_all(char **paragraph, int index);
 
 char	*get_next_line(int fd)
 {
-	static char		*paragraph;
+	static char		*paragraph[4096];
 	char			*buffer;
 	char			*line;
 
@@ -26,20 +27,20 @@ char	*get_next_line(int fd)
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
-	paragraph = get_characters(buffer, paragraph, fd);
+	paragraph[fd] = get_characters(buffer, paragraph[fd], fd);
 	free(buffer);
-	if (!paragraph)
+	if (!paragraph[fd])
 		return (0);
-	if (ft_strchr(paragraph, '\n'))
+	if (ft_strchr(paragraph[fd], '\n'))
 	{
-		line = ft_substr(paragraph, 0, ft_strnlen(paragraph, '\n') + 1);
-		paragraph = make_paragraph(paragraph, line);
+		line = ft_substr(paragraph[fd], 0, ft_strnlen(paragraph[fd], '\n') + 1);
+		paragraph[fd] = make_paragraph(paragraph[fd], line);
 	}
 	else
 	{
-		line = ft_strdup(paragraph);
-		free(paragraph);
-		paragraph = 0;
+		line = ft_strdup(paragraph[fd]);
+		free(paragraph[fd]);
+		paragraph[fd] = 0;
 	}
 	return (line);
 }
