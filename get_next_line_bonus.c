@@ -6,7 +6,7 @@
 /*   By: npolack <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:28:44 by npolack           #+#    #+#             */
-/*   Updated: 2024/10/24 10:41:45 by npolack          ###   ########.fr       */
+/*   Updated: 2024/10/24 20:34:26 by npolack          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 static char	*make_paragraph(char *paragraph, char *current_line);
 static char	*get_characters(char *buffer, char *paragraph, int fd);
-//static void	free_all(char **paragraph, int index);
-
+//static
 char	*get_next_line(int fd)
 {
 	static char		*paragraph[4096];
 	char			*buffer;
 	char			*line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 4096)
 		return (0);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
@@ -61,7 +60,7 @@ static char	*make_paragraph(char *paragraph, char *current_line)
 	return (paragraph);
 }
 
-static char	*get_characters(char *buffer, char *paragraph, int fd)
+char	*get_characters(char *buffer, char *paragraph, int fd)
 {
 	int		bytes_read;
 	char	*tmp;
