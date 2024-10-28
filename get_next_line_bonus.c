@@ -6,7 +6,7 @@
 /*   By: npolack <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:28:44 by npolack           #+#    #+#             */
-/*   Updated: 2024/10/24 20:34:26 by npolack          ###   ########.fr       */
+/*   Updated: 2024/10/28 15:38:25 by npolack          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*make_paragraph(char *paragraph, char *current_line);
 static char	*get_characters(char *buffer, char *paragraph, int fd);
-//static
+
 char	*get_next_line(int fd)
 {
 	static char		*paragraph[4096];
@@ -49,7 +49,7 @@ static char	*make_paragraph(char *paragraph, char *current_line)
 	char	*tmp;
 	ssize_t	para_len;
 	ssize_t	line_len;
-	ssize_t new_plen;
+	ssize_t	new_plen;
 
 	line_len = ft_strnlen(current_line, 0);
 	para_len = ft_strnlen(paragraph, 0);
