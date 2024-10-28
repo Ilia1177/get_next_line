@@ -1,4 +1,6 @@
 a.out
 *.swp
 *.swo
+main.c
+*test*
 README.txt
