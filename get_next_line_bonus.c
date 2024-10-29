@@ -6,7 +6,7 @@
 /*   By: npolack <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:28:44 by npolack           #+#    #+#             */
-/*   Updated: 2024/10/29 12:24:34 by npolack          ###   ########.fr       */
+/*   Updated: 2024/10/29 12:27:20 by npolack          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	*make_paragraph(char *paragraph, char *current_line)
 	return (paragraph);
 }
 
-char	*get_characters(char *buffer, char *paragraph, int fd)
+static char	*get_characters(char *buffer, char *paragraph, int fd)
 {
 	int		bytes_read;
 	char	*tmp;
