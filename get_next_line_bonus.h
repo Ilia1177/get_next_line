@@ -6,14 +6,17 @@
 /*   By: npolack <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:28:49 by npolack           #+#    #+#             */
-/*   Updated: 2024/10/28 15:39:01 by npolack          ###   ########.fr       */
+/*   Updated: 2024/10/29 12:21:33 by npolack          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 ///////////////////////////// BONUS ////////////////////////////////////////////
